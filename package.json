@@ -1,0 +1,30 @@
+{
+  "name": "deepl-api",
+  "version": "0.3.2",
+  "description": "A Node.js Deepl API Proxy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Futhey <futhey@gmail.com> (http://jamesfuthey.com/)",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "request": "^2.81.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kidGodzilla/deepl-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kidGodzilla/deepl-api/issues"
+  },
+  "homepage": "https://github.com/kidGodzilla/deepl-api#readme",
+  "keywords": [
+    "deepl",
+    "translation",
+    "api"
+  ]
+}
