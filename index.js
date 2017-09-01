@@ -52,8 +52,15 @@ function createRequest(s, iso) {
 	var key = `raw_${ iso.toLowerCase() }_sentence`;
 	var beams = s;
 
-	if (typeof s == 'string')
+	try {
+		beams = JSON.parse(beams);
+	} catch(e) {}
+
+	if (typeof beams == 'string')
 		beams = stringToBeams(s);
+
+	console.log(typeof s);
+	console.log(beams);
 
 	beams.forEach((beam) => {
 		var o3 = {
@@ -79,10 +86,25 @@ function processRequest (o) {
 	return out.trim();
 }
 
+function processRequestToArray (o) {
+	var out = [];
+
+	if (o && o.result && o.result.translations)
+		o.result.translations.forEach((translation) => {
+			if (translation && translation.beams && translation.beams[0] && translation.beams[0].postprocessed_sentence)
+				out.push(translation.beams[0].postprocessed_sentence);
+		});
+
+	return out;
+}
+
 app.post('/', function (req, res) {
 	var body = req.body;
 	var text = body.text;
+	var format = body.format;
 	var targetLanguage = body.iso || 'en';
+
+	//if (typeof text !== 'string') format = 'array';
 
 	if (!text) return res.send('Nothing to Translate.');
 
@@ -99,7 +121,9 @@ app.post('/', function (req, res) {
 			body = JSON.parse(body);
 		} catch(e){}
 
-		res.send(processRequest(body));
+		var resp = format == 'array' ? processRequestToArray(body) : processRequest(body);
+
+		res.send(resp);
 	});
 });
 
