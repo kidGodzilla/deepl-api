@@ -50,7 +50,10 @@ function createRequest(s, iso) {
 	o2.params.lang.target_lang = iso.toUpperCase();
 
 	var key = `raw_${ iso.toLowerCase() }_sentence`;
-	var beams = stringToBeams(s);
+	var beams = s;
+
+	if (typeof s == 'string')
+		beams = stringToBeams(s);
 
 	beams.forEach((beam) => {
 		var o3 = {

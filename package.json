@@ -4,7 +4,7 @@
   "description": "A Node.js Deepl API Proxy",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index"
   },
   "author": "James Futhey <futhey@gmail.com> (http://jamesfuthey.com/)",
   "license": "ISC",
